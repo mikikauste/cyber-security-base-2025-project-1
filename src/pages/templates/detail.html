@@ -1,0 +1,7 @@
+<h2>{{note.title}}</h2>
+<div>{{note.content}}</div>
+<form action="/notes/delete/{{note.id}}/" method="POST" style="margin-top:1rem;">
+  <!-- to fix the CSRF flaw, add {% csrf_token %} here -->
+  <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+</form>
+<a href="/">Back to homepage</a>

@@ -1,0 +1,8 @@
+<h2>Register</h2>
+<form method="POST">
+  {% csrf_token %}
+  <p><input name="username" placeholder="username"></p>
+  <p><input name="password" type="password" placeholder="password"></p>
+  <button type="submit">Create account</button>
+  {% if error %}<div style="color:red">{{error}}</div>{% endif %}
+</form>

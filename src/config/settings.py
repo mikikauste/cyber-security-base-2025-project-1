@@ -11,23 +11,19 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
-# A05:2021-Security Misconfiguration - use environment variable instead of hardcoded value to fix
+# A05:2021-Security Misconfiguration
 SECRET_KEY = 'django-insecure-g1twc&uzwm^3-(0=x#kc+o0uf8oc#bw012+1mjovw_-od^h45e'
+# SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") # A05:2021-Security Misconfiguration FIX - use environment variable instead of hardcoded value to fix
 
-# SECURITY WARNING: don't run with debug turned on in production!
-
-# A05:2021-Security Misconfiguration - change to False to fix 
-DEBUG = True
+# A05:2021-Security Misconfiguration
+DEBUG = True # Change to False to fix 
+# DEBUG = False # FIX A05:2021-Security Misconfiguration - don't run with debug turned on in production
 
 ALLOWED_HOSTS = []
 
@@ -125,3 +121,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "root": {"handlers": ["console"], "level": "INFO"},
+}

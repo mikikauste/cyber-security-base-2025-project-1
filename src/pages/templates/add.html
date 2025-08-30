@@ -1,0 +1,8 @@
+<h2>Add note</h2>
+<form method="POST">
+  <!-- to fix the CSRF flaw, add {% csrf_token %} here -->
+  <p><input name="title" placeholder="title"></p>
+  <p><textarea name="content" placeholder="content"></textarea></p>
+  <button type="submit">Save</button>
+</form>
+<a href="/">Back to homepage</a>

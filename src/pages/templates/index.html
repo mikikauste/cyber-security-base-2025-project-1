@@ -1,0 +1,27 @@
+<h1>Notes</h1>
+<div>
+  {% if user.is_authenticated %}
+  <a href="/notes/add/">Add note</a> |
+  <form method="POST" action="/logout/" id="logoutForm" style="display:inline">{% csrf_token %}</form>
+  <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+  {% else %}
+  <a href="/register/">Register</a> |
+  <a href="/login/">Login</a> |
+  {% endif %}
+</div>
+
+<form method="GET" style="margin:10px 0px;">
+  <input name="q" value="{{ q }}" size=30 placeholder="Search with title (injection possible)">
+  <button>Search</button>
+</form>
+
+
+{% for n in notes %}
+  <div><a href="/notes/{{n.id}}/">{{n.title}}</a></div>
+{% empty %}
+  <em>No notes</em>
+{% endfor %}
+
+<p style="margin-top:10px;font-size:smaller;">
+  A03:2021-Injection flaw: seach with: <code style="background-color:lightgrey">' OR 1=1--</code> to expose notes of other users
+</p>
