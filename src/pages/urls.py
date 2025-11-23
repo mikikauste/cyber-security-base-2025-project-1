@@ -9,4 +9,5 @@ urlpatterns = [
     path("notes/<int:note_id>/", views.note_detail),
     path("notes/add/", views.add_note),
     path("notes/delete/<int:note_id>/", views.delete_note),
+    path("debug-test/", views.debug_test),
 ]
