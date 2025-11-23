@@ -88,7 +88,7 @@ def debug_test(request):
     raise Exception("This is a test exception for debugging purposes")
 
 @login_required
-@csrf_exempt  # To fix CSRF flaw in the route, remove this line and add {% csrf_token %} to the form in the template
+#@csrf_exempt  # To fix CSRF flaw in the route, remove this line and add {% csrf_token %} to the form in the template
 def add_note(request):
     if request.method == "POST":
         n = Note.objects.create(
